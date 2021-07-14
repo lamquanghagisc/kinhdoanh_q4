@@ -90,7 +90,7 @@ class TintucController extends AbstractKinhdoanhq6Controller
     public function actionView($id= null)
     {
         
-        // dd($this->const['buttons']['update']);
+       
         $request = Yii::$app->request;
         return $this->render('view', [
                     'model' => $this->findModel($id),
