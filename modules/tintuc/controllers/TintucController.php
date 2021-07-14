@@ -203,7 +203,7 @@ class TintucController extends AbstractKinhdoanhq6Controller
     {
         
         $danhmuc['loaitin'] = DmLoaitin::find()->all();
-//        dd($danhmuc);
+ 
         return $danhmuc;
     }
 }
