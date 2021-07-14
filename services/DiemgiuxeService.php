@@ -1,0 +1,51 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+namespace app\services;
+
+use app\models\DiemGiuXe;
+use yii\data\Pagination;
+use function mb_strtoupper;
+
+/**
+ * Description of DiemgiuxeService
+ *
+ * @author TriLVH
+ */
+class DiemgiuxeService {
+
+    public static function getListDiemgiuxeGeojson() {
+        $listDiemgiuxe = DiemGiuXe::find();
+        $listDiemgiuxe->where('geom is not null');
+        return $listDiemgiuxe->select(['id_diemgiuxe as id', 'st_x(geom) AS geo_x', 'st_y(geom) AS geo_y'])->asArray()->all();
+    }
+
+    public static function getDiemgiuxe($slug) {
+        $model = DiemGiuXe::find()->where(['id_diemgiuxe' => $slug])->asArray()->one();
+        return $model;
+    }
+
+    public static function getListDiemgiuxe($q = null) {
+        $query = DiemGiuXe::find();
+        if ($q != null) {
+            $q = mb_strtoupper($q, 'UTF-8');
+            $query->orWhere(['like', 'upper(ten_diemgiuxe)', $q]);
+            $query->orWhere(['like', 'upper(chu_dau_tu)', $q]);
+            $query->orWhere(['like', 'upper(so_nha)', $q]);
+            $query->orWhere(['like', 'upper(ten_duong)', $q]);
+            $query->orWhere(['like', 'upper(ten_phuong)', $q]);
+            $query->orWhere(['like', 'upper(dien_thoai)', $q]);
+        }
+        $countQuery = clone $query;
+        $totalcount = $countQuery->count();
+        $pages = new Pagination(['totalCount' => $totalcount]);
+        $models = $query->offset($pages->offset)->limit($pages->limit)->asArray()->all();
+        return ['pages' => $pages, 'models' => $models, 'totalcount' => $totalcount];
+    }
+
+}

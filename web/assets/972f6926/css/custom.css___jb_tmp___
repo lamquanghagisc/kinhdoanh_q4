@@ -1,0 +1,22 @@
+.modal-header, .modal-footer {
+    display: block;
+}
+
+.help-block {
+    color: red;
+}
+
+.padding-tb-10px {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.content-full-width {
+    padding: 0;
+    width:100%;
+}
+
+.menu-content {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}

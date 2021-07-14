@@ -1,0 +1,70 @@
+.modal-header, .modal-footer {
+    display: block;
+}
+
+.help-block {
+    color: red;
+}
+
+.no-padding-side {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.padding-tb-05 {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+.padding-b-0 {
+    padding-bottom: 0 !important;
+}
+
+.padding-t-0 {
+    padding-top: 0 !important;
+}
+
+.margin-tb-05 {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.content-full-width {
+    padding: 0;
+    width: 100%;
+}
+
+.menu-content {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.row-map {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.custom-text-summary {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.map-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+
+.map-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
