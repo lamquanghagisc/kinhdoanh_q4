@@ -90,19 +90,14 @@ $config = [
             'rules' => [
                 'lien-he' => 'user/site/contact',
                 'tra-cuu-vi-tri' => 'user/map/bando',
-//                'tin-tuc' => 'user/tin-tuc/index',
+                'tin-tuc' => 'user/tin-tuc/index',
 //                'tin-tuc/<alias:[\w\d\-]+>' => 'user/tin-tuc/view',
 //                'doanh-nghiep-tieu-bieu' => 'user/doanh-nghiep-tieu-bieu/index',
 //                'doanh-nghiep-tieu-bieu/<alias:[\w\d\-]+>' => 'user/doanh-nghiep-tieu-bieu/view',
                 [
                     'pattern' => 'tin-tuc/<page:\d+>',
                     'route' => 'user/tin-tuc/index',
-                    'defaults' => ['page' => 1,],
-                ],
-                [
-                    'pattern' => 'tin-tuc/timkiem/<page:\d+>&<q:\w\d+>',
-                    'route' => 'user/tin-tuc/timkiem',
-                   
+                    'defaults' => ['page' => 1],
                 ],
                 [
                     'pattern' => 'tin-tuc/<alias:[\w\d\-]+>',
