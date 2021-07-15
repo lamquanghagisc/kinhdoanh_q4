@@ -9,6 +9,7 @@
 $this->title = $model->tieu_de;
 $this->params['breadcrumbs'][] = ['label' => 'Tin tức', 'url' => Yii::$app->urlManager->createUrl('tin-tuc/1')];
 $this->params['breadcrumbs'][] = $this->title;
+// dd($model->noi_dung);
 ?>
 
 <div class="content content-full padding-t-0">

@@ -72,4 +72,8 @@ class TinTucController extends FrontendBaseController
             'pagination' => $pagination,
         ]);
     }
+    public function actionTimkiem(){
+        // dd(Yii::$app->request->get());
+        return $this->render('timkiem');
+    }
 }

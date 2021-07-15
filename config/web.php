@@ -100,6 +100,11 @@ $config = [
                     'defaults' => ['page' => 1,],
                 ],
                 [
+                    'pattern' => 'tin-tuc/timkiem/<page:\d+>&<q:\w\d+>',
+                    'route' => 'user/tin-tuc/timkiem',
+                   
+                ],
+                [
                     'pattern' => 'tin-tuc/<alias:[\w\d\-]+>',
                     'route' => 'user/tin-tuc/view',
                 ],

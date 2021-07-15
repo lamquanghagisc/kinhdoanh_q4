@@ -8,7 +8,7 @@ use yii\helpers\ArrayHelper;
 <div class="tintuc-search">
 <?php $form = ActiveForm::begin([
     'action' =>['index'],
-    'method' =>'get',
+    'method' =>'post',
             ]) ?>
 
 
