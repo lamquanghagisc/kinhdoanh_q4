@@ -1,6 +1,7 @@
 <?php
 /* Include debug functions */
 require_once(__DIR__.'/functions.php');
+require(__DIR__ . '/../common/models/Api.php');
 $params = require(__DIR__ . '/params.php');
 
 $config = [

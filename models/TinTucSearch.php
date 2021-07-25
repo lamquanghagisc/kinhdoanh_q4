@@ -140,7 +140,7 @@ class TinTucSearch extends TinTuc
     }
 
 
-    public function getExportColumns()
+    public function getExportColumns($categories,$const)
     {
         return [
             [
@@ -172,13 +172,13 @@ class TinTucSearch extends TinTuc
             ],
             [
                 'class'=>'\kartik\grid\DataColumn',
-                'attribute'=>'ten_loai',
+                'attribute'=>'loaitin_id',
                 'value' => 'dmloaitin.ten_loai',
                 'label' => 'Loại tin'
             ],
             [
                 'class'=>'\kartik\grid\DataColumn',
-                'attribute'=>'ten_dang_nhap',
+                'attribute'=>'taikhoan_id',
                 'value' => 'taikhoan.ten_dang_nhap',
                 'label' => 'Tên đăng nhập'
             ],      
@@ -201,18 +201,21 @@ class TinTucSearch extends TinTuc
                 'attribute'=>'noi_dung',
                 'value' =>function ($model, $key, $index, $widget) { 
                     
-                    return $model->noi_dung;
+                    // return $model->noi_dung;
+                    return strip_tags($model->noi_dung) ;
                 },
-                
+                'format'=>'html',   
+
+                'contentOptions' => [
+
+                    'style'=>' overflow: auto; word-wrap: break-word;white-space:pre-line;width: 600px;'
+
+                ],
             ],
             [
                 //  'class'=>'\kartik\grid\DataColumn',
                 'attribute'=>'thoi_gian_dang',
-                
-                // 'content'=>function($data){
-                //     if($data->thoi_gian_dang != '')
-                //         return date("d-m-Y",strtotime($data->thoi_gian_dang));
-                // }
+               
                 'value' => function ($model, $key, $index, $widget) { 
                     return date("d-m-Y h:m:s", strtotime($model->thoi_gian_dang));
                 },
@@ -253,9 +256,10 @@ class TinTucSearch extends TinTuc
                 'dropdown' => false,
                 'vAlign' => 'middle',
                 'urlCreator' => function ($action, $model, $key, $index) use ($const) {
+                    
                     return Yii::$app->urlManager->createUrl([$const['url'][$action], 'id' => $key]);
                 },
-                'template' => '{view}{update}{delete}{export}',
+                'template' => '{view}{update}{delete}',
                 'buttons' => [
                     'export' => function ($url) {
                         return Html::a("<i class='fa fa-arrow-down'></i> ", Yii::$app->urlManager->createUrl('..'.$url),['class' =>" btn btn-xs green-jungle btn-outline sbold",'title' => 'Export']);

@@ -22,13 +22,12 @@ class TinTucController extends FrontendBaseController
         $request = Yii::$app->request;
         $q = $request->get('q');
         $c = $request->get('c');
-
         if($request->isPost){
+            
             $q = $request->post('q');
             $c = $request->post('c');
             return $this->redirect(Yii::$app->urlManager->createUrl("tin-tuc?q=$q&c=$c"));
         }
-
         $loaitin = DmLoaitin::find()->all();
         $query = TinTuc::find()->filterWhere(['loaitin_id' => $c])->andFilterWhere(['like','upper(tieu_de)',mb_strtoupper($q)])->orderBy('thoi_gian_dang desc');
         $count = $query->count();

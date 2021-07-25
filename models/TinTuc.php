@@ -1,11 +1,14 @@
 <?php
 
 namespace app\models;
+
+use app\common\models\Api;
 use app\models\DmLoaitin;
 use app\models\auth\Taikhoan;
 use Yii;
 use yii\helpers\ArrayHelper;
-
+use yii\behaviors\AttributeBehavior;
+use yii\db\ActiveRecord;
 /**
  * This is the model class for table "tin_tuc".
  *
@@ -26,6 +29,7 @@ class TinTuc extends \yii\db\ActiveRecord
     {
         return 'tin_tuc';
     }
+    
 
     /**
      * {@inheritdoc}
@@ -67,6 +71,14 @@ class TinTuc extends \yii\db\ActiveRecord
         $cat = DmLoaitin::find()->all();
         $cat = ArrayHelper::map($cat, 'id', 'ten_loai');
         return $cat;
+    }
+    public function beforeSave($insert)
+    {
+        // $this->thoi_gian_dang=Api::convertDMYtoYMD($this->thoi_gian_dang);
+        if($this->thoi_gian_dang !=null){
+            $this->thoi_gian_dang=date('Y-m-d', strtotime($this->thoi_gian_dang));
+        }
+        return parent::beforeSave($insert);
     }
     
 }

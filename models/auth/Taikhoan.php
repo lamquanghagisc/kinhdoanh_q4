@@ -3,6 +3,7 @@
 namespace app\models\auth;
 
 use app\models\TinTuc;
+use app\models\Video;
 use Yii;
 use yii\web\IdentityInterface;
 
@@ -72,6 +73,10 @@ class Taikhoan extends \yii\db\ActiveRecord implements IdentityInterface
     public function getTintuc()
     {
         return $this->hasMany(TinTuc::className(),['id_taikhoan'=>'id_tintuc']);
+    }
+    public function getVideo()
+    {
+        return $this->hasMany(Video::className(),['id_taikhoan'=>'id']);
     }
 
     /**
