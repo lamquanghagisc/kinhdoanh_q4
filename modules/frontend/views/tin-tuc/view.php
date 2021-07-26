@@ -1,4 +1,5 @@
 <?php
+use kartik\social\FacebookPlugin;
 /**
  * Created by PhpStorm.
  * User: MinhDuc
@@ -22,6 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <p>
                 <?= htmlspecialchars_decode($model->noi_dung)?>
             </p>
+            <div>
+                <?= FacebookPlugin::widget(['type'=>FacebookPlugin::SHARE, 'settings' => ['size'=>'large', 'layout'=>'button_count', 'mobile_iframe'=>'false']])?>
+            </div>
         </div>
     </div>
 </div>

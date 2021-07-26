@@ -123,6 +123,16 @@ $config = [
     ],
     'defaultRoute' => 'user/site/index',
     'modules' => [
+        'social' => [
+            // the module class
+            'class' => 'kartik\social\Module',
+     
+            // the global settings for the facebook widget
+            'facebook' => [
+                'appId' => '996352967768149',
+                'app_secret' => '21de6470edd7cfac341610b55ab191d1',
+            ],
+        ],
         'maps' => [
             'class' => 'app\modules\maps\Map',
 //            'defaultRoute' => 'maps'

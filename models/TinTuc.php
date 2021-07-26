@@ -134,5 +134,10 @@ class TinTuc extends \yii\db\ActiveRecord
         }
         return parent::afterSave($insert,$changedAttributes);
     }
+    public function getImageurl()
+    {
+        
+        return \Yii::$app->request->BaseUrl.'/uploads/file/hinhtintuc/'.$this->ten_hinh;
+    }
     
 }

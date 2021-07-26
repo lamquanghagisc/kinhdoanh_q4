@@ -247,11 +247,11 @@ class TinTucSearch extends TinTuc
                 'class'=>'\kartik\grid\DataColumn',
                 'attribute'=>'ten_hinh',
                 // 'format' => 'html',
+               
+                // 'value' =>function ($model) {
                 
-                'value' =>function ($model) {
-                   
-                    return Html::img('../uploads/file/hinhtintuc/'. $model->ten_hinh,['width' => '80px']);
-                },
+                //     return($model->ten_hinh)? Html::img('../uploads/file/hinhtintuc/'. $model->ten_hinh,['class' =>'img-responsive','width'=>'100px','height'=>'100px']):Html::img('../uploads/file/hinhtintuc/no-image.png',['class' =>'img-responsive','width'=>'100px','height'=>'100px']);
+                // },
                 // 'format'=>'raw',   
             ],
             [
