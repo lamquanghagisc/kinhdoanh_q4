@@ -113,7 +113,7 @@ class TintucController extends AbstractKinhdoanhq6Controller
         $model['loaitin']= DmLoaitin::find()->orderBy('ten_loai')->all();
       
         if ($request->isPost && $model['tintuc']->load($request->post()) && $model['tintuc']->validate()) {
-            $model['tintuc']->taikhoan_id= Yii::$app->user->id;
+            // $model['tintuc']->taikhoan_id= Yii::$app->user->id;
             // dd($model['tintuc']);
             $model['tintuc']->save();
 
@@ -142,7 +142,7 @@ class TintucController extends AbstractKinhdoanhq6Controller
     
         $model['loaitin']=DmLoaitin::find()->orderBy('ten_loai')->all();
         if ($request->isPost && $model['tintuc']->load($request->post()) && $model['tintuc']->validate()) {
-            $model['tintuc']->taikhoan_id= Yii::$app->user->id;
+            // $model['tintuc']->taikhoan_id= Yii::$app->user->id;
             $model['tintuc']->save();
             return $this->redirect(['view', 'id' => $model['tintuc']->id_tintuc]);
         }
@@ -165,6 +165,13 @@ class TintucController extends AbstractKinhdoanhq6Controller
     {
         $request = Yii::$app->request;
         $model = $this->findModel($id);
+         //xóa file upload
+         if($model->ten_hinh){
+            $path=Yii::$app->basePath . '/uploads/file/hinhtintuc/'.$model->ten_hinh;
+            if(is_file($path)){
+                unlink($path);
+            }
+        }
 
         if($request->isAjax){
             /*

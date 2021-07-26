@@ -122,8 +122,13 @@ use app\services\UtilityService;
             </a>
             <ul class="sub-menu">
                   <li class="nav-item">
-                    <a href="<?= Yii::$app->urlManager->createUrl('tintuc') ?>" class="nav-link ">
+                    <a href="<?= Yii::$app->urlManager->createUrl('tintuc/tintuc') ?>" class="nav-link ">
                       <i class="fa fa-list"></i>   <span class="title">Quản lý tin tức</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= Yii::$app->urlManager->createUrl('tintuc/video') ?>" class="nav-link ">
+                      <i class="fa fa-list"></i>   <span class="title">Quản lý video</span>
                     </a>
                 </li>
               

@@ -89,6 +89,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                
                 'lien-he' => 'user/site/contact',
                 'tra-cuu-vi-tri' => 'user/map/bando',
                 'tin-tuc' => 'user/tin-tuc/index',

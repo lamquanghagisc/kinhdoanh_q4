@@ -144,9 +144,15 @@
                                         </a>
                                         <ul class="nav-main-submenu">
                                             <li class="nav-main-item">
-                                                <a href="<?= Yii::$app->urlManager->createUrl('admin/tintuc/index') ?>"
+                                                <a href="<?= Yii::$app->urlManager->createUrl('tintuc/tintuc') ?>"
                                                    class="nav-main-link">
                                                     <i class="nav-main-link-icon fa fa-list"></i> <span class="nav-main-link-name">Quản lý tin tức</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-main-item">
+                                                <a href="<?= Yii::$app->urlManager->createUrl('tintuc/video') ?>"
+                                                   class="nav-main-link">
+                                                    <i class="nav-main-link-icon fa fa-list"></i> <span class="nav-main-link-name">Quản lý video</span>
                                                 </a>
                                             </li>
 

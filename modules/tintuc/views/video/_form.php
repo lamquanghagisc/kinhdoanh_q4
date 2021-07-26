@@ -5,6 +5,7 @@ use kartik\form\ActiveForm;
 use kartik\date\DatePicker;
 use yii\helpers\ArrayHelper;
 use dosamigos\tinymce\TinyMce;
+use wbraganca\videojs\VideoJsWidget;
 /* @var $this yii\web\View */
 /* @var $model app\models\Video */
 /* @var $form yii\widgets\ActiveForm */
@@ -94,7 +95,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                     </div>
-                    
+                    <div class="row">
+
+                       
+
+                    </div>
                     <div class="row">
                     <?php if(!$model['video']->isNewRecord):?>
                         <div class="col-lg-12">
@@ -103,6 +108,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                             <div class="mb-3">
                                 <div class="text-muted">Link video</div>
+                               
                                 <a href="<?= $model['video']->getVideoLink()?>">Mở video</a>
                             </div>
                             

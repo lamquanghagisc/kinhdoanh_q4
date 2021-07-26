@@ -12,6 +12,8 @@ use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 use dosamigos\datetimepicker\DateTimePicker;
 use yii\widgets\DetailView;
+use app\modules\DCrud\grid\GridView;
+use yii\helpers\Url;
 
 // use yii\jui\DatePicker;
 // use kartik\date\DatePicker;
@@ -36,7 +38,7 @@ class TinTucSearch extends TinTuc
         return [
             [['id_tintuc'], 'integer'],
             [['thoi_gian_dang'], 'date','format' => 'dd-MM-yyyy'],
-            [['loaitin_id', 'taikhoan_id','tieu_de', 'duong_dan', 'noi_dung', 'thoi_gian_dang', 'tom_tat', 'alias_title'], 'safe'],
+            [['loaitin_id', 'taikhoan_id','ten_hinh','tieu_de', 'duong_dan', 'noi_dung', 'thoi_gian_dang', 'tom_tat', 'alias_title'], 'safe'],
         ];
     }
 
@@ -87,7 +89,7 @@ class TinTucSearch extends TinTuc
             ->andFilterWhere(['like', 'upper(noi_dung)', mb_strtoupper($this->noi_dung)])
             ->andFilterWhere(['like', 'upper(tom_tat)', mb_strtoupper($this->tom_tat)])
             // ->andFilterWhere(['=', 'loaitin_id', $this->loaitin_id])
-           
+            ->andFilterWhere(['like', 'upper(ten_hinh)', mb_strtoupper($this->ten_hinh)])
             ->andFilterWhere(['like', 'upper(alias_title)', mb_strtoupper($this->alias_title)]) 
             //  ->andFilterWhere(['like', 'upper(dm_loaitin.ten_loai)', mb_strtoupper($this->ten_loai)])//dm_loaitin tên table
             // ->andFilterWhere(['like', 'upper(taikhoan.ten_dang_nhap)', mb_strtoupper($this->ten_dang_nhap)])
@@ -192,10 +194,39 @@ class TinTucSearch extends TinTuc
             ],
                
             [
-                'class'=>'\kartik\grid\DataColumn',
+                 'class'=>'\kartik\grid\DataColumn',
+              
                 'attribute'=>'tieu_de',
+                'value' =>function ($model, $key, $index, $widget) { 
+                    
+                    // return $model->noi_dung;
+                    return strip_tags($model->tieu_de) ;
+                },
+                'format'=>'html',   
+
+                'contentOptions' => [
+
+                    'style'=>' overflow: auto; word-wrap: break-word;white-space:pre-line;'
+
+                ],
             ],
-           
+
+            [
+                'class'=>'\kartik\grid\DataColumn',
+                'attribute'=>'tom_tat',
+                'value' =>function ($model, $key, $index, $widget) { 
+                    
+                    // return $model->noi_dung;
+                    return strip_tags($model->tom_tat) ;
+                },
+                'format'=>'html',   
+
+                'contentOptions' => [
+
+                    'style'=>' overflow: auto; word-wrap: break-word;white-space:pre-line;'
+
+                ],
+            ],
             [
                 'class'=>'\kartik\grid\DataColumn',
                 'attribute'=>'noi_dung',
@@ -208,34 +239,38 @@ class TinTucSearch extends TinTuc
 
                 'contentOptions' => [
 
-                    'style'=>' overflow: auto; word-wrap: break-word;white-space:pre-line;width: 600px;'
+                    'style'=>' overflow: auto; word-wrap: break-word;white-space:pre-line;'
 
                 ],
             ],
             [
-                //  'class'=>'\kartik\grid\DataColumn',
-                'attribute'=>'thoi_gian_dang',
-               
-                'value' => function ($model, $key, $index, $widget) { 
-                    return date("d-m-Y h:m:s", strtotime($model->thoi_gian_dang));
-                },
-               
-				
-            
-               
-                
-            ],
-            [
                 'class'=>'\kartik\grid\DataColumn',
-                'attribute'=>'tom_tat',
+                'attribute'=>'ten_hinh',
+                // 'format' => 'html',
+                
+                'value' =>function ($model) {
+                   
+                    return Html::img('../uploads/file/hinhtintuc/'. $model->ten_hinh,['width' => '80px']);
+                },
+                // 'format'=>'raw',   
             ],
             [
                 'class'=>'\kartik\grid\DataColumn',
                 'attribute'=>'alias_title',
             ],
             [
+                 'class'=>'\kartik\grid\DataColumn',
+                'attribute'=>'thoi_gian_dang',
+               
+                'value' => function ($model, $key, $index, $widget) { 
+                    return date("d-m-Y h:m:s", strtotime($model->thoi_gian_dang));
+                },               
+            ],
+            
+           
+            [
                 'class'=>'\kartik\grid\DataColumn',
-                // 'attribute'=>'ten_loai',
+               
                 'attribute'=>'loaitin_id',
                 'value' => 'dmloaitin.ten_loai',
                 'label' => 'Loại tin',
@@ -244,7 +279,7 @@ class TinTucSearch extends TinTuc
             ],
             [
                 'class'=>'\kartik\grid\DataColumn',
-               //  'attribute'=>'ten_dang_nhap',
+            
                'attribute'=>'taikhoan_id',
                 'value' => 'taikhoan.ten_dang_nhap',
                 'label' => 'Tên đăng nhập'

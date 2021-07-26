@@ -83,7 +83,7 @@ class VideoController extends AbstractKinhdoanhq6Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($id= null)
     {
         $request = Yii::$app->request;
         return $this->render('view', [
@@ -155,7 +155,7 @@ class VideoController extends AbstractKinhdoanhq6Controller
         $model = $this->findModel($id);
         //xóa file upload
         if($model->ten_video){
-            $path=Yii::$app->homeUrl . '/uploads/file/video/'.$model->ten_video;
+            $path=Yii::$app->basePath . '/uploads/file/video/'.$model->ten_video;
             if(is_file($path)){
                 unlink($path);
             }

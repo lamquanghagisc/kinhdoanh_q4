@@ -128,11 +128,32 @@ class VideoSearch extends Video
             [
                 'class'=>'\kartik\grid\DataColumn',
                 'attribute'=>'tieu_de',
+                'value' =>function ($model, $key, $index, $widget) { 
+                    
+                    // return $model->noi_dung;
+                    return strip_tags($model->tieu_de) ;
+                },
+                'format'=>'html',   
+
+                'contentOptions' => [
+
+                    'style'=>' overflow: auto; word-wrap: break-word;white-space:pre-line;'
+
+                ],
             ],
            
             [
                 'class'=>'\kartik\grid\DataColumn',
                 'attribute'=>'tom_tat',
+                'value' =>function ($model, $key, $index, $widget) { 
+                    
+                    
+                    return strip_tags($model->tom_tat) ;
+                },
+                'format'=>'html',   
+                'contentOptions' => [
+                    'style'=>' overflow: auto; word-wrap: break-word;white-space:pre-line;'
+                ],
                
             ],
             [

@@ -51,6 +51,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td><?= $model->thoi_gian_dang ?></td>
                             </tr>
                             <tr>
+                                <th><?= $model->getAttributeLabel('ten_hinh') ?></th>
+                                <td><?= $model->ten_hinh ?></td>
+                            </tr>
+                            <tr>
                                 <th><?= $model->getAttributeLabel('loaitin_id') ?></th>
                                 <td><?= $model->dmloaitin->ten_loai ?></td>
                             </tr>

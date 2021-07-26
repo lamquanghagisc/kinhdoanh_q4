@@ -43,15 +43,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="portlet-body">
 
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <?= $form->field($model['tintuc'], 'tieu_de')->textInput(['maxlength' => true]) ?>
                            
                         </div>
                         
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <?= $form->field($model['tintuc'], 'alias_title')->textInput() ?>
                         </div>
-                        
+                        <div class="col-lg-4">
+                            <?= $form->field($model['tintuc'], 'ten_hinh')->FileInput() ?>
+                        </div>
 
                     </div>
                     <div class="row">
@@ -96,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <div class="col-lg-12">
                             <?= $form->field($model['tintuc'], 'noi_dung')->widget(TinyMce::className(), [
-                                    'options' => ['rows' => 6],
+                                    'options' => ['rows' => 10],
                                     'language' => 'vn',
                                     'clientOptions' => [
                                         'plugins' => [

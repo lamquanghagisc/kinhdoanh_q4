@@ -56,7 +56,7 @@ class Video extends \yii\db\ActiveRecord
             'tieu_de' => 'Tiêu đề',
             'tom_tat' => 'Tóm tắt',
             'alias_title' => 'Slug',
-            'ten_video' => 'video',
+            'ten_video' => 'Video',
             'duong_dan' => 'Đường dẫn',
             'loaitin_id' => 'Loại tin',
             'taikhoan_id' => 'Tài khoản',
@@ -126,14 +126,14 @@ class Video extends \yii\db\ActiveRecord
         if($file){
             //3.upload b
             $ten_file=$this->ten_video;
-            $path=Yii::$app->homeUrl.'/uploads/file/video/'.$ten_file;
+            $path=Yii::$app->basePath.'/uploads/file/video/'.$ten_file;
             $file->saveAs($path);
             //xóa file cũ
             //1.xóa a
             if(!$insert){
                 $ten_video_cu=Yii::$app->session->get('ten_video_cu');
                 if($ten_video_cu != null){
-                    $path=Yii::$app->homeUrl . '/uploads/file/video/'.$ten_video_cu;
+                    $path=Yii::$app->basePath . '/uploads/file/video/'.$ten_video_cu;
                     if(is_file($path)){
                         unlink($path);
                     }
@@ -156,7 +156,7 @@ class Video extends \yii\db\ActiveRecord
     // }
     public function getVideoLink()
     {
-        $link=Yii::$app->homeUrl . '/uploads/file/video/'.$this->ten_video;
+        $link=Yii::$app->basePath . '/uploads/file/video/'.$this->ten_video;
         return $link;
     }
     
