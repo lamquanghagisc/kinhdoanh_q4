@@ -123,7 +123,7 @@ $config = [
     ],
     'defaultRoute' => 'user/site/index',
     'modules' => [
-        'social' => [
+        'social' => [//like, share plugin kartik-v/yii2-social
             // the module class
             'class' => 'kartik\social\Module',
      
