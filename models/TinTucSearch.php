@@ -159,31 +159,31 @@ class TinTucSearch extends TinTuc
                 'class'=>'\kartik\grid\DataColumn',
                 'attribute'=>'noi_dung',
             ],
-            [
-                'class'=>'\kartik\grid\DataColumn',
-                'attribute'=>'thoi_gian_dang',
+            // [
+            //     'class'=>'\kartik\grid\DataColumn',
+            //     'attribute'=>'thoi_gian_dang',
                 
-            ],
+            // ],
             [
                 'class'=>'\kartik\grid\DataColumn',
                 'attribute'=>'tom_tat',
             ],
-            [
-                'class'=>'\kartik\grid\DataColumn',
-                'attribute'=>'alias_title',
-            ],
-            [
-                'class'=>'\kartik\grid\DataColumn',
-                'attribute'=>'loaitin_id',
-                'value' => 'dmloaitin.ten_loai',
-                'label' => 'Loại tin'
-            ],
-            [
-                'class'=>'\kartik\grid\DataColumn',
-                'attribute'=>'taikhoan_id',
-                'value' => 'taikhoan.ten_dang_nhap',
-                'label' => 'Tên đăng nhập'
-            ],      
+            // [
+            //     'class'=>'\kartik\grid\DataColumn',
+            //     'attribute'=>'alias_title',
+            // ],
+            // [
+            //     'class'=>'\kartik\grid\DataColumn',
+            //     'attribute'=>'loaitin_id',
+            //     'value' => 'dmloaitin.ten_loai',
+            //     'label' => 'Loại tin'
+            // ],
+            // [
+            //     'class'=>'\kartik\grid\DataColumn',
+            //     'attribute'=>'taikhoan_id',
+            //     'value' => 'taikhoan.ten_dang_nhap',
+            //     'label' => 'Tên đăng nhập'
+            // ],      
         ];
     }
     public function getGridColumns($categories,$const,$searchModel){

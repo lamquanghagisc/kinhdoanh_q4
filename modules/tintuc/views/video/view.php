@@ -38,7 +38,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <th><?= $model->getAttributeLabel('tom_tat') ?></th>
                                 <td><?= $model->tom_tat ?></td>
                             </tr>
-                            
+                            <tr>
+                                <th><?= $model->getAttributeLabel('noi_dung') ?></th>
+                                <td><?= $model->noi_dung ?></td>
+                            </tr>
                             <tr>
                                 <th><?= $model->getAttributeLabel('alias_title') ?></th>
                                 <td><?= $model->alias_title ?></td>
@@ -46,6 +49,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             <tr>
                                 <th><?= $model->getAttributeLabel('thoi_gian_dang') ?></th>
                                 <td><?= $model->thoi_gian_dang ?></td>
+                            </tr>
+                            <tr>
+                                <th><?= $model->getAttributeLabel('anh_dai_dien') ?></th>
+                                <td><?= $model->anh_dai_dien ?></td>
                             </tr>
                             <tr>
                                 <th><?= $model->getAttributeLabel('ten_video') ?></th>

@@ -153,7 +153,14 @@ class VideoController extends AbstractKinhdoanhq6Controller
     {
         $request = Yii::$app->request;
         $model = $this->findModel($id);
-        //xóa file upload
+        //xóa ảnh đại diện upload 
+        if($model->anh_dai_dien){
+            $path=Yii::$app->basePath . '/uploads/file/anhvideo/'.$model->anh_dai_dien;
+            if(is_file($path)){
+                unlink($path);
+            }
+        }
+        //xóa file video upload
         if($model->ten_video){
             $path=Yii::$app->basePath . '/uploads/file/video/'.$model->ten_video;
             if(is_file($path)){

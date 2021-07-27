@@ -19,6 +19,8 @@ use yii\web\UploadedFile;
  * @property int|null $loaitin_id
  * @property int|null $taikhoan_id
  * @property string|null $thoi_gian_dang
+ * @property string|null $noi_dung Nội dung
+ * @property string|null $anh_dai_dien Ảnh đại diện
  */
 class Video extends \yii\db\ActiveRecord
 {
@@ -39,8 +41,8 @@ class Video extends \yii\db\ActiveRecord
             [['duong_dan','tieu_de', 'tom_tat', 'alias_title', 'ten_video'], 'string'],
             [['loaitin_id', 'taikhoan_id'], 'default', 'value' => null],
             [['loaitin_id', 'taikhoan_id'], 'integer'],
-            [['thoi_gian_dang'], 'safe'],
-            // [['ten_video'], 'required','message' => '"{attribute}" không được để trống!'],
+            [['noi_dung','thoi_gian_dang'], 'safe'],
+            [['anh_dai_dien'],'file','extensions'=>'jpg,png,gif'],
             [['ten_video'],'file','extensions'=>'mp2,mpa,mpe,mpeg,mpg,mpv2,	mp4,mov,qt,lsf,	lsx,asf,
                                                     asr,asx,avi,movie,wmv,MTS,M2TS,TS'],
         ];
@@ -57,6 +59,8 @@ class Video extends \yii\db\ActiveRecord
             'tom_tat' => 'Tóm tắt',
             'alias_title' => 'Slug',
             'ten_video' => 'Video',
+            'noi_dung' =>'Nội dung',
+            'anh_dai_dien' =>'Ảnh đại diện',
             'duong_dan' => 'Đường dẫn',
             'loaitin_id' => 'Loại tin',
             'taikhoan_id' => 'Tài khoản',
@@ -83,7 +87,7 @@ class Video extends \yii\db\ActiveRecord
         $cat = ArrayHelper::map($cat, 'id', 'ten_loai');
         return $cat;
     }
-    //khi người dùng upload file mới
+    //xử lý upload file mới trường hợp cập nhật
     // file cu: a
     //file mới: b
     //1.xóa a
@@ -92,6 +96,29 @@ class Video extends \yii\db\ActiveRecord
     //3.upload b
     public function beforeSave($insert)
     {
+        //xử lý ảnh đại diện--------------------------------------------------
+        $fileAnh=UploadedFile::getInstance($this,'anh_dai_dien');
+        if($fileAnh){//có upload file
+            //2.update a=b => tên a đã bị thay thế trong csdl thì sẽ mất tên a =>
+            // do đó phải lưu file cũ trong session để lấy ra xóa
+            $this->anh_dai_dien=$fileAnh->name;
+            if(!$insert){
+                $video=self::findOne($this->id);
+                // lấy file cũ lưu vào session
+                Yii::$app->session->set('anh_dai_dien_cu',$video->anh_dai_dien);
+            }
+        }
+        else{// không upload file
+            if($insert){//TH insert
+                $this->anh_dai_dien=null;
+            }
+            else{// TH update
+                $video=self::findOne($this->id);
+                // lấy tên đã có gán cho tên mới
+                $this->anh_dai_dien=$video->anh_dai_dien;
+            }
+        }
+        //xử lý video--------------------------------------------------------
         $file=UploadedFile::getInstance($this,'ten_video');
         if($file){//có upload file
             //2.update a=b => tên a đã bị thay thế trong csdl thì sẽ mất tên a =>
@@ -122,6 +149,26 @@ class Video extends \yii\db\ActiveRecord
     }
     public function afterSave($insert, $changedAttributes)
     {
+        //xử lý ảnh đại diện----------------------------------------
+        $fileAnh=UploadedFile::getInstance($this,'anh_dai_dien');
+        if($fileAnh){
+            //3.upload b
+            $ten_file=$this->anh_dai_dien;
+            $path=Yii::$app->basePath.'/uploads/file/anhvideo/'.$ten_file;
+            $fileAnh->saveAs($path);
+            //xóa file cũ
+            //1.xóa a
+            if(!$insert){
+                $anh_dai_dien_cu=Yii::$app->session->get('anh_dai_dien_cu');
+                if($anh_dai_dien_cu != null){
+                    $path=Yii::$app->basePath . '/uploads/file/anhvideo/'.$anh_dai_dien_cu;
+                    if(is_file($path)){
+                        unlink($path);
+                    }
+                }
+            }
+        }
+        //xử lý video-----------------------------------------------
         $file=UploadedFile::getInstance($this,'ten_video');
         if($file){
             //3.upload b

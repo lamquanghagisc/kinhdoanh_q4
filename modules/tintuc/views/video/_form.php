@@ -43,15 +43,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="portlet-body">
                    
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <?= $form->field($model['video'], 'tieu_de')->textInput(['maxlength' => true]) ?>
                            
                         </div>
                         
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <?= $form->field($model['video'], 'alias_title')->textInput() ?>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
+                            <?= $form->field($model['video'], 'anh_dai_dien')->FileInput() ?>
+                        </div>
+                        <div class="col-lg-3">
                             <?= $form->field($model['video'], 'ten_video')->FileInput() ?>
                         </div>
 
@@ -95,29 +98,25 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                     </div>
+                    
                     <div class="row">
 
-                       
-
-                    </div>
-                    <div class="row">
-                    <?php if(!$model['video']->isNewRecord):?>
                         <div class="col-lg-12">
-                            <div class="ratio ratio-16x9">
-                                <video  src="<?= $model['video']->getVideoLink()?>" title="video" controls></video>
-                            </div>
-                            <div class="mb-3">
-                                <div class="text-muted">Link video</div>
-                               
-                                <a href="<?= $model['video']->getVideoLink()?>">Mở video</a>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <div class="text-muted">Tên video</div>
-                                <?= $model['video']->ten_video?>
-                            </div>
+                            <?= $form->field($model['video'], 'noi_dung')->widget(TinyMce::className(), [
+                                    'options' => ['rows' => 10],
+                                    'language' => 'vn',
+                                    'clientOptions' => [
+                                        'plugins' => [
+                                            "advlist autolink lists link charmap print preview anchor",
+                                            "searchreplace visualblocks code fullscreen",
+                                            "insertdatetime media table contextmenu paste"
+                                        ],
+                                        'toolbar' => "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+                                    ]
+                                ]); 
+                            ?>
                         </div>
-                    <?php endif;?>
+
                     </div>
                   
                 </div>
