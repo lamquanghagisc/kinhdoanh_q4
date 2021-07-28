@@ -93,6 +93,7 @@ $config = [
                 'lien-he' => 'user/site/contact',
                 'tra-cuu-vi-tri' => 'user/map/bando',
                 'tin-tuc' => 'user/tin-tuc/index',
+                'video' => 'user/video/index',
 //                'tin-tuc/<alias:[\w\d\-]+>' => 'user/tin-tuc/view',
 //                'doanh-nghiep-tieu-bieu' => 'user/doanh-nghiep-tieu-bieu/index',
 //                'doanh-nghiep-tieu-bieu/<alias:[\w\d\-]+>' => 'user/doanh-nghiep-tieu-bieu/view',
@@ -102,8 +103,17 @@ $config = [
                     'defaults' => ['page' => 1],
                 ],
                 [
+                    'pattern' => 'video/<page:\d+>',
+                    'route' => 'user/video/index',
+                    'defaults' => ['page' => 1],
+                ],
+                [
                     'pattern' => 'tin-tuc/<alias:[\w\d\-]+>',
                     'route' => 'user/tin-tuc/view',
+                ],
+                [
+                    'pattern' => 'video/<alias:[\w\d\-]+>',
+                    'route' => 'user/video/view',
                 ],
                 [
                     'pattern' => 'tin-tuc/loaitin/<id:[\w\d\-]+>',
@@ -128,7 +138,7 @@ $config = [
             'class' => 'kartik\social\Module',
      
             // the global settings for the facebook widget
-            'facebook' => [
+            'facebook' => [//đăng ký https://developers.facebook.com/apps
                 'appId' => '996352967768149',
                 'app_secret' => '21de6470edd7cfac341610b55ab191d1',
             ],

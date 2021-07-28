@@ -35,7 +35,7 @@ $this->title = 'Tin tức';
                            href="<?= Yii::$app->urlManager->createUrl('tin-tuc' . '/' . $item->alias_title) ?>">
                             <div class="block-content">
                                 <h4 class="mb-1"><?= $item->tieu_de ?></h4>
-                             
+                               
                                 <img src="../uploads/file/hinhtintuc/<?=$item->ten_hinh?> " alt=" " class="img-responsive" />
                                 <p>
                                     <?= $item->tom_tat ?>

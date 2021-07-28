@@ -31,7 +31,12 @@ $pathInfo = Yii::$app->request->pathInfo;
                         <span class="text-uppercase font-w700">Tin tức</span>
                     </a>
                 </li>
-                
+                <li class="nav-main-item">
+                    <a class="nav-main-link <?= $pathInfo == 'video' ? 'active' : ''?>" href="<?= Yii::$app->urlManager->createUrl('video')?>">
+                        <i class="nav-main-link-icon fa fa-list"></i>
+                        <span class="text-uppercase font-w700">Video</span>
+                    </a>
+                </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link <?= $pathInfo == 'doanh-nghiep-tieu-bieu' ? 'active' : ''?>" href="<?= Yii::$app->urlManager->createUrl('doanh-nghiep-tieu-bieu')?>">
                         <i class="nav-main-link-icon fa fa-briefcase"></i>
