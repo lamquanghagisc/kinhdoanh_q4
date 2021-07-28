@@ -36,7 +36,7 @@ $this->title = 'Tin tức';
                             <div class="block-content">
                                 <h4 class="mb-1"><?= $item->tieu_de ?></h4>
                                
-                                <img src="../uploads/file/hinhtintuc/<?=$item->ten_hinh?> " alt=" " class="img-responsive" />
+                                <img src="<?= Yii::$app->homeUrl?>../uploads/file/hinhtintuc/<?=$item->ten_hinh?> " alt=" " class="img-responsive" />
                                 <p>
                                     <?= $item->tom_tat ?>
                                 </p>

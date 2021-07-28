@@ -33,7 +33,7 @@ $pathInfo = Yii::$app->request->pathInfo;
                 </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link <?= $pathInfo == 'video' ? 'active' : ''?>" href="<?= Yii::$app->urlManager->createUrl('video')?>">
-                        <i class="nav-main-link-icon fa fa-list"></i>
+                        <i class="nav-main-link-icon fa fa-play-circle"></i>
                         <span class="text-uppercase font-w700">Video</span>
                     </a>
                 </li>

@@ -22,17 +22,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 <span class="text-black"><?= date('H:i:s d-m-Y', strtotime($model->thoi_gian_dang))?></span>
             </p>
            
-            <img src="../uploads/file/anhvideo/<?=$model->anh_dai_dien?> " alt=" " class="img-responsive" />
+           
             <div class="ratio ratio-16x9">
-                <video src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="" controls></video>
+                <video src="<?= Yii::$app->homeUrl?>../uploads/file/video/<?=$model->ten_video?>" title="" controls></video>
             </div>
             <p>
                 <?= htmlspecialchars_decode($model->noi_dung)?>
             
             </p>
-            <div class="ratio ratio-16x9">
             
-            </div>
             <div>
                 <?= FacebookPlugin::widget(['type'=>FacebookPlugin::SHARE, 'settings' => ['size'=>'large', 'layout'=>'button_count', 'mobile_iframe'=>'false']])?>
             </div>

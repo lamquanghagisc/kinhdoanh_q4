@@ -36,7 +36,7 @@ $this->title = 'Video';
                             <div class="block-content">
                                 <h4 class="mb-1"><?= $item->tieu_de ?></h4>
                           
-                                <img src="../uploads/file/anhvideo/<?=$item->anh_dai_dien?> " alt=" " class="img-responsive" />
+                                <img src="<?= Yii::$app->homeUrl?>../uploads/file/anhvideo/<?=$item->anh_dai_dien?> " alt=" " class="img-responsive" />
                                 <p>
                                     <?= $item->tom_tat ?>
                                 </p>
