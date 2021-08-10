@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Video;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 /**
@@ -20,7 +21,7 @@ class VideoSearch extends Video
     {
         return [
             [['id'], 'integer'],
-            [['anh_dai_dien','noi_dung','duong_dan','loaitin_id', 'taikhoan_id','tieu_de', 'tom_tat', 'alias_title', 'ten_video', 'thoi_gian_dang'], 'safe'],
+            [['anh_dai_dien','noi_dung','duong_dan','loaitin_id', 'taikhoan_id','tieu_de', 'tom_tat', 'slug', 'ten_video', 'thoi_gian_dang'], 'safe'],
         ];
     }
 
@@ -58,7 +59,7 @@ class VideoSearch extends Video
 
         $query->andFilterWhere([
             'id' => $this->id,
-            // 'loaitin_id' => $this->loaitin_id,
+            'loaitin_id' => $this->loaitin_id,
             // 'taikhoan_id' => $this->taikhoan_id,
             'thoi_gian_dang' => $this->thoi_gian_dang,
         ]);
@@ -66,11 +67,11 @@ class VideoSearch extends Video
         $query->andFilterWhere(['like', 'upper(tieu_de)', mb_strtoupper($this->tieu_de)])
             ->andFilterWhere(['like', 'upper(tom_tat)', mb_strtoupper($this->tom_tat)])
             ->andFilterWhere(['like', 'upper(noi_dung)', mb_strtoupper($this->noi_dung)])
-            ->andFilterWhere(['like', 'upper(alias_title)', mb_strtoupper($this->alias_title)])
+            ->andFilterWhere(['like', 'upper(slug)', mb_strtoupper($this->slug)])
             ->andFilterWhere(['like', 'upper(anh_dai_dien)', mb_strtoupper($this->anh_dai_dien)])
             ->andFilterWhere(['like', 'upper(ten_video)', mb_strtoupper($this->ten_video)])
             ->andFilterWhere(['like', 'upper(duong_dan)', mb_strtoupper($this->duong_dan)])
-            ->andFilterWhere(['like', 'upper(dm_loaitin.ten_loai)', mb_strtoupper($this->loaitin_id)])//dm_loaitin tên table
+            // ->andFilterWhere(['like', 'upper(dm_loaitin.ten_loai)', mb_strtoupper($this->loaitin_id)])//dm_loaitin tên table
             ->andFilterWhere(['like', 'upper(taikhoan.ten_dang_nhap)', mb_strtoupper($this->taikhoan_id)]);
         return $dataProvider;
     }
@@ -96,7 +97,7 @@ class VideoSearch extends Video
             ],
             [
                 'class'=>'\kartik\grid\DataColumn',
-                'attribute'=>'alias_title',
+                'attribute'=>'slug',
             ],
             [
                 'class'=>'\kartik\grid\DataColumn',
@@ -185,11 +186,16 @@ class VideoSearch extends Video
             //     'class'=>'\kartik\grid\DataColumn',
             //     'attribute'=>'alias_title',
             // ],
-            // [
-            //     'class'=>'\kartik\grid\DataColumn',
-            //     'attribute'=>'anh_dai_dien',
-                   
-            // ],
+            [
+                'class'=>'\kartik\grid\DataColumn',
+                'attribute'=>'anh_dai_dien',
+                'format'=>'raw',
+
+                'value' => function ($data) {
+                       $url = Yii::$app->homeUrl.'../uploads/file/anhvideo/'.$data->anh_dai_dien;
+                       return Html::img($url, ['alt'=>'myImage','width'=>'70','height'=>'50']);
+                }
+            ],
             [
                 'class'=>'\kartik\grid\DataColumn',
                 'attribute'=>'ten_video',
@@ -208,14 +214,14 @@ class VideoSearch extends Video
             //     },       
                 
             // ],
-            // [
-            //     'class'=>'\kartik\grid\DataColumn',               
-            //     'attribute'=>'loaitin_id',
-            //     'value' => 'dmloaitin.ten_loai',
-            //     'label' => 'Loại tin',
+            [
+                'class'=>'\kartik\grid\DataColumn',               
+                'attribute'=>'loaitin_id',
+                'value' => 'dmloaitin.ten_loai',
+                'label' => 'Loại tin',
                
-            //     // 'filter' => Html::activeDropDownList($searchModel,'loaitin_id',ArrayHelper::map(DmLoaitin::find()->asArray()->all(),'id','ten_loai'),['class' =>'form-control','prompt'=>'Chọn']),
-            // ],
+                'filter' => Html::activeDropDownList($searchModel,'loaitin_id',ArrayHelper::map(DmLoaitin::find()->asArray()->all(),'id','ten_loai'),['class' =>'form-control','prompt'=>'Chọn']),
+            ],
             // [
             //     'class'=>'\kartik\grid\DataColumn',              
             //     'attribute'=>'taikhoan_id',

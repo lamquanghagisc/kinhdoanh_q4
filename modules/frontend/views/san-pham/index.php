@@ -15,35 +15,46 @@ use app\modules\DCrud\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\widgets\LinkPager;
 
-$this->title = 'Video';
+$this->title = 'Sản phẩm';
 
 ?>
+<style>
+   
+</style>
 <div class="content content-full">
 
 
     <div class="row">
+        <!-- trái -->
         <div class="col-lg-9">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="text-danger"><span class="fa fa-newspaper"></span> <strong>Video</strong></h2>
+                    <h2 class="text-danger"><span class="fa fa-newspaper"></span> <strong>Sản phẩm</strong></h2>
                 </div>
             </div>
             <div class="row">
+               
+            
                 <?php foreach ($model as $i => $item): ?>
                     <div class="col-lg-12">
-                        <a class="block block-rounded"
-                           href="<?= Yii::$app->urlManager->createUrl('video' . '/' . $item->slug) ?>">
-                            <div class="block-content">
-                                <h4 class="mb-1"><?= $item->tieu_de ?></h4>
-                          
-                                <img src="<?= Yii::$app->homeUrl?>../uploads/file/anhvideo/<?=$item->anh_dai_dien?> " alt=" " class="img-responsive" />
-                                <p>
-                                    <?= $item->tom_tat ?>
-                                </p>
-                            </div>
-                        </a>
-                    </div>
+                        <div class="card-deck">
+                                <div class="card" style="width: 18rem;">
+                                    <img class="card-img-top" src="<?= Yii::$app->homeUrl?>../uploads/file/hinhsanpham/<?=$item->anh_dai_dien?>" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?= $item->ten_san_pham ?></h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">Giá: <?= number_format($item->gia_san_pham,0,',','.') ?> VNĐ</h6>
+                                        <p class="card-text"><?= $item->tom_tat ?></p>
+                                    
+                                        <a href="<?= Yii::$app->urlManager->createUrl('san-pham' . '/' . $item->slug) ?>" class="btn btn-primary">Chi tiết</a>
+                                    </div>
+                                    <div class="card-footer">
+                                    </div>
+                                </div>
+                        </div>    
+                    </div>      
                 <?php endforeach; ?>
+            
+                
                 <div class="col-lg-12">
                     <?= LinkPager::widget([
                         'pagination' => $pagination,
@@ -53,6 +64,7 @@ $this->title = 'Video';
             </div>
 
         </div>
+        <!-- trái -->
         <div class="col-lg-3">
             <div class="row">
                 <div class="col-lg-12">
@@ -65,14 +77,14 @@ $this->title = 'Video';
                         <div class="block-content">
                             <?php $form = ActiveForm::begin([
                                 'method' => 'post',
-                                'action' => Yii::$app->urlManager->createUrl('user/video/index'),
+                                'action' => Yii::$app->urlManager->createUrl('user/san-pham/index'),
                             ]) ?>
                             <div class="form-group">
                                 <?= Html::input('text', 'q', $q, ['class' => 'form-control']) ?>
 
                             </div>
                             <div class="form-group">
-                                <?= Html::dropDownList('c', $c, ArrayHelper::map($loaitin, 'id', 'ten_loai'), ['class' => 'form-control', 'prompt' => 'Chọn loại tin']) ?>
+                                <?= Html::dropDownList('c', $c, ArrayHelper::map($nganhnghe, 'id', 'ten_nganh'), ['class' => 'form-control', 'prompt' => 'Chọn ngành nghề']) ?>
 
                             </div>
                             <div class="form-group">

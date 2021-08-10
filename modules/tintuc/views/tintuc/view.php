@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td><?= $model->noi_dung ?></td>
                             </tr>
                             <tr>
-                                <th><?= $model->getAttributeLabel('alias_title') ?></th>
+                                <th><?= $model->getAttributeLabel('slug') ?></th>
                                 <td><?= $model->alias_title ?></td>
                             </tr>
                             <tr>

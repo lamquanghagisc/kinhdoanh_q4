@@ -57,7 +57,7 @@ $this->title = 'Quản lý kinh doanh quận 4';
                         <?php foreach ($model['tin_tuc'] as $i => $item): ?>
                             <div class="col-md-3 bordered ">
                                 <h3 class="mt-username"><a
-                                            href="<?= Yii::$app->urlManager->createUrl('tin-tuc' . '/' . $item->alias_title)?>"> <?= $item->tieu_de ?></a>
+                                            href="<?= Yii::$app->urlManager->createUrl('tin-tuc' . '/' . $item->slug)?>"> <?= $item->tieu_de ?></a>
                                 </h3>
                                 <p class="mt-user-title custom-text-summary"> <?= $item->tom_tat ?> </p>
                             </div>

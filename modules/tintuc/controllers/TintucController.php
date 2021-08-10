@@ -163,10 +163,11 @@ class TintucController extends AbstractKinhdoanhq6Controller
      */
     public function actionDelete($id= null)
     {
+       
         $request = Yii::$app->request;
         $model = $this->findModel($id);
          //xóa file upload
-         if($model->ten_hinh){
+         if($model->ten_hinh !='no-image.png'){
             $path=Yii::$app->basePath . '/uploads/file/hinhtintuc/'.$model->ten_hinh;
             if(is_file($path)){
                 unlink($path);
@@ -213,4 +214,8 @@ class TintucController extends AbstractKinhdoanhq6Controller
  
         return $danhmuc;
     }
+    public function getXoaanhtin($id){
+        dd($id);
+    }
+    
 }

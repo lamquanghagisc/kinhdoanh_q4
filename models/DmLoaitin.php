@@ -46,7 +46,7 @@ class DmLoaitin extends \yii\db\ActiveRecord
         ];
     }
     public function getTintuc(){
-        return $this->hasMany(TinTuc::className(),['loaitin_id'=>'id_tintuc']);
+        return $this->hasMany(TinTuc::className(),['loaitin_id'=>'id']);
     }
     public function getVideo(){
         return $this->hasMany(Video::className(),['loaitin_id'=>'id']);

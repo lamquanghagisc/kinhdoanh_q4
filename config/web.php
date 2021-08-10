@@ -44,6 +44,7 @@ $config = [
             'nullDisplay' => '<i>(Chưa có dữ liệu)</i>',
             'defaultTimeZone' => 'UTC',
             'timeZone' => 'Asia/Kolkata',
+          
             // 'dateFormat' => 'dd-MM-YY',
         ],
         // 'siteApi' => [
@@ -94,6 +95,7 @@ $config = [
                 'tra-cuu-vi-tri' => 'user/map/bando',
                 'tin-tuc' => 'user/tin-tuc/index',
                 'video' => 'user/video/index',
+                // 'san-pham' => 'user/san-pham/index',
 //                'tin-tuc/<alias:[\w\d\-]+>' => 'user/tin-tuc/view',
 //                'doanh-nghiep-tieu-bieu' => 'user/doanh-nghiep-tieu-bieu/index',
 //                'doanh-nghiep-tieu-bieu/<alias:[\w\d\-]+>' => 'user/doanh-nghiep-tieu-bieu/view',
@@ -108,17 +110,30 @@ $config = [
                     'defaults' => ['page' => 1],
                 ],
                 [
-                    'pattern' => 'tin-tuc/<alias:[\w\d\-]+>',
+                    'pattern' => 'san-pham/<page:\d+>',
+                    'route' => 'user/san-pham/index',
+                    'defaults' => ['page' => 1],
+                ],
+                [
+                    'pattern' => 'tin-tuc/<slug:[\w\d\-]+>',
                     'route' => 'user/tin-tuc/view',
                 ],
                 [
-                    'pattern' => 'video/<alias:[\w\d\-]+>',
+                    'pattern' => 'video/<slug:[\w\d\-]+>',
                     'route' => 'user/video/view',
+                ],
+                [
+                    'pattern' => 'san-pham/<slug:[\w\d\-]+>',
+                    'route' => 'user/san-pham/view',
                 ],
                 [
                     'pattern' => 'tin-tuc/loaitin/<id:[\w\d\-]+>',
                     'route' => 'user/tin-tuc/loaitin',
                 ],
+                // [
+                //     'pattern' => 'tintuc/tintuc/xoaanhtin/<id:[\w\d\-]+>',
+                //     'route' => 'tintuc/tintuc/xoaanhtin',
+                // ],
                 [
                     'pattern' => 'doanh-nghiep-tieu-bieu/<page:\d+>',
                     'route' => 'user/doanh-nghiep-tieu-bieu/index',
@@ -161,6 +176,9 @@ $config = [
         ],
         'tintuc' => [
             'class' => 'app\modules\tintuc\Tintuc',
+        ],
+        'sanpham' => [
+            'class' => 'app\modules\sanpham\Sanpham',
         ],
         
     ],

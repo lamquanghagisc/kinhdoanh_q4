@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use Yii;
 use app\common\models\Api;
 use yii\web\UploadedFile;
+use yii\behaviors\SluggableBehavior;
 
 /**
  * This is the model class for table "video".
@@ -14,7 +15,7 @@ use yii\web\UploadedFile;
  * @property int $id
  * @property string|null $tieu_de
  * @property string|null $tom_tat
- * @property string|null $alias_title
+ * @property string|null $slug
  * @property string|null $ten_video
  * @property int|null $loaitin_id
  * @property int|null $taikhoan_id
@@ -31,14 +32,25 @@ class Video extends \yii\db\ActiveRecord
     {
         return 'video';
     }
+    public function behaviors()
+    {
+        return [
+            'sluggable' =>[
 
+                'class' => SluggableBehavior::class,
+                'attribute' => 'tieu_de',
+                // 'slugAttribute' => 'slug',
+            ],
+            
+        ];
+    }
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['duong_dan','tieu_de', 'tom_tat', 'alias_title', 'ten_video'], 'string'],
+            [['duong_dan','tieu_de', 'tom_tat', 'slug', 'ten_video'], 'string'],
             [['loaitin_id', 'taikhoan_id'], 'default', 'value' => null],
             [['loaitin_id', 'taikhoan_id'], 'integer'],
             [['noi_dung','thoi_gian_dang'], 'safe'],
@@ -57,7 +69,7 @@ class Video extends \yii\db\ActiveRecord
             'id' => 'ID',
             'tieu_de' => 'Tiêu đề',
             'tom_tat' => 'Tóm tắt',
-            'alias_title' => 'Slug',
+            'slug' => 'Slug',
             'ten_video' => 'Video',
             'noi_dung' =>'Nội dung',
             'anh_dai_dien' =>'Ảnh đại diện',
@@ -110,7 +122,7 @@ class Video extends \yii\db\ActiveRecord
         }
         else{// không upload file
             if($insert){//TH insert
-                $this->anh_dai_dien=null;
+                $this->anh_dai_dien='no-image.png';
             }
             else{// TH update
                 $video=self::findOne($this->id);
@@ -132,7 +144,7 @@ class Video extends \yii\db\ActiveRecord
         }
         else{// không upload file
             if($insert){//TH insert
-                $this->ten_video=null;
+                $this->ten_video='no-video.png';
             }
             else{// TH update
                 $video=self::findOne($this->id);

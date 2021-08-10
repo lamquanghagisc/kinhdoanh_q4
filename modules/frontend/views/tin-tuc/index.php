@@ -32,7 +32,7 @@ $this->title = 'Tin tức';
                 <?php foreach ($model as $i => $item): ?>
                     <div class="col-lg-12">
                         <a class="block block-rounded"
-                           href="<?= Yii::$app->urlManager->createUrl('tin-tuc' . '/' . $item->alias_title) ?>">
+                           href="<?= Yii::$app->urlManager->createUrl('tin-tuc' . '/' . $item->slug) ?>">
                             <div class="block-content">
                                 <h4 class="mb-1"><?= $item->tieu_de ?></h4>
                                

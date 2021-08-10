@@ -12,7 +12,7 @@ use wbraganca\videojs\VideoJsWidget;
 $this->title = (((isset($model['video']) && ($model['video']->id)==null)) ? $const['label']['create'] : $const['label']['update']) . ' ' . $const['title'];
 $this->params['breadcrumbs'][] = ['label' => $const['label']['index'] . ' ' . $const['title'], 'url' => Yii::$app->urlManager->createUrl($const['url']['index'])];
 $this->params['breadcrumbs'][] = $this->title;
-// ?>
+ ?>
 <ul class="page-breadcrumb breadcrumb">
     <li>
         <a href="<?= Yii::$app->homeUrl ?>">Trang chủ</a>
@@ -43,18 +43,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="portlet-body">
                    
                     <div class="row">
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
                             <?= $form->field($model['video'], 'tieu_de')->textInput(['maxlength' => true]) ?>
                            
                         </div>
                         
-                        <div class="col-lg-3">
-                            <?= $form->field($model['video'], 'alias_title')->textInput() ?>
-                        </div>
-                        <div class="col-lg-3">
+                       
+                        <div class="col-lg-4">
                             <?= $form->field($model['video'], 'anh_dai_dien')->FileInput() ?>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
                             <?= $form->field($model['video'], 'ten_video')->FileInput() ?>
                         </div>
 

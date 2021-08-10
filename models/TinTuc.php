@@ -10,6 +10,7 @@ use yii\helpers\ArrayHelper;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
+use yii\behaviors\SluggableBehavior;
 /**
  * This is the model class for table "tin_tuc".
  *
@@ -19,7 +20,7 @@ use yii\web\UploadedFile;
  * @property string|null $noi_dung Nội dung
  * @property string|null $thoi_gian_dang
  * @property string|null $tom_tat Tóm tắt
- * @property string|null $alias_title
+ * @property string|null $slug
  * @property string|null $ten_hinh Tên hình
  */
 class TinTuc extends \yii\db\ActiveRecord
@@ -31,7 +32,18 @@ class TinTuc extends \yii\db\ActiveRecord
     {
         return 'tin_tuc';
     }
-    
+    public function behaviors()
+    {
+        return [
+            'sluggable' =>[
+
+                'class' => SluggableBehavior::class,
+                'attribute' => 'tieu_de',
+                // 'slugAttribute' => 'slug',
+            ],
+            
+        ];
+    }
 
     /**
      * {@inheritdoc}
@@ -41,7 +53,7 @@ class TinTuc extends \yii\db\ActiveRecord
         return [
             [['loaitin_id', 'taikhoan_id'], 'default', 'value' => null],
             [['loaitin_id', 'taikhoan_id'], 'integer'],
-            [['tieu_de', 'duong_dan', 'noi_dung', 'tom_tat', 'alias_title'], 'string'],
+            [['tieu_de', 'duong_dan', 'noi_dung', 'tom_tat', 'slug'], 'string'],
             [['thoi_gian_dang'], 'safe'],
             [['ten_hinh'],'file','extensions'=>'jpg,png,gif']
         ];
@@ -60,7 +72,7 @@ class TinTuc extends \yii\db\ActiveRecord
             'noi_dung' => 'Nội dung',
             'thoi_gian_dang' => 'Thời gian đăng',
             'tom_tat' => 'Tóm tắt',
-            'alias_title' => 'Slug',
+            'slug' => 'Slug',
             'loaitin_id' =>'Loại tin',
             'taikhoan_id' =>'Tài khoản'
         ];
@@ -98,7 +110,7 @@ class TinTuc extends \yii\db\ActiveRecord
         }
         else{// không upload file
             if($insert){//TH insert
-                $this->ten_hinh=null;
+                $this->ten_hinh='no-image.png';
             }
             else{// TH update
                 $tintuc=self::findOne($this->id_tintuc);

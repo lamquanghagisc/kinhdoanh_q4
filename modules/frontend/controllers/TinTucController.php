@@ -45,9 +45,10 @@ class TinTucController extends FrontendBaseController
         ]);
     }
 
-    public function actionView($alias)
+    public function actionView($slug)
     {
-        $model = TinTuc::findOne(['alias_title' => $alias]);
+        
+        $model = TinTuc::findOne(['slug' => $slug]);
 
         if ($model == null) {
             return $this->render('notfound');

@@ -2,35 +2,37 @@
 /**
  * Created by PhpStorm.
  * User: Lâm Quang Hà
- * Date: 27/07/2021
+ * Date: 09/08/2021
  * Time: 23:30 AM
  */
 
 namespace app\modules\frontend\controllers;
 
-use app\models\DmLoaitin;
-use app\models\TinTuc;
-use app\models\TinTucSearch;
-use app\models\Video;
+use app\models\DmNganhNghe;
+use app\models\SanPham;
+use app\models\SanPhamSearch;
+
 use app\modules\frontend\base\FrontendBaseController;
 use Yii;
 use yii\data\Pagination;
 
-class VideoController extends FrontendBaseController
+class SanPhamController extends FrontendBaseController
 {
     public function actionIndex()
     {
         $request = Yii::$app->request;
         $q = $request->get('q');
         $c = $request->get('c');
-        if($request->isPost){
-            
+        // dd($q,$c);
+        if($request->isPost){   
             $q = $request->post('q');
             $c = $request->post('c');
-            return $this->redirect(Yii::$app->urlManager->createUrl("video?q=$q&c=$c"));
+            
+            return $this->redirect(Yii::$app->urlManager->createUrl("san-pham?q=$q&c=$c"));
         }
-        $loaitin = DmLoaitin::find()->all();
-        $query = Video::find()->filterWhere(['loaitin_id' => $c])->andFilterWhere(['like','upper(tieu_de)',mb_strtoupper($q)])->orderBy('thoi_gian_dang desc');
+        // dd($q,$c);
+        $nganhnghe = DmNganhNghe::find()->all();
+        $query = SanPham::find()->filterWhere(['nganhnghe_id' => $c])->andFilterWhere(['like','upper(ten_san_pham)',mb_strtoupper($q)])->orderBy('thoi_gian_dang desc');
         $count = $query->count();
         $pagination = new Pagination(['totalCount' => $count, 'pageSize' => 10]);
         $model = $query->offset($pagination->offset)
@@ -38,7 +40,7 @@ class VideoController extends FrontendBaseController
             ->all();
 
         return $this->render('index', [
-            'loaitin' => $loaitin,
+            'nganhnghe' => $nganhnghe,
             'model' => $model,
             'pagination' => $pagination,
             'c' => $c,
@@ -48,7 +50,7 @@ class VideoController extends FrontendBaseController
 
     public function actionView($slug)
     {
-        $model = Video::findOne(['slug' => $slug]);
+        $model = SanPham::findOne(['slug' => $slug]);
 
         if ($model == null) {
             return $this->render('notfound');

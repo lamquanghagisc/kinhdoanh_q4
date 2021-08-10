@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 // use yii\widgets\ActiveForm;
 use kartik\form\ActiveForm;
 use kartik\date\DatePicker;
@@ -43,16 +44,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="portlet-body">
 
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <?= $form->field($model['tintuc'], 'tieu_de')->textInput(['maxlength' => true]) ?>
                            
                         </div>
                         
-                        <div class="col-lg-4">
-                            <?= $form->field($model['tintuc'], 'alias_title')->textInput() ?>
-                        </div>
-                        <div class="col-lg-4">
+                        
+                        <div class="col-lg-6">
                             <?= $form->field($model['tintuc'], 'ten_hinh')->FileInput() ?>
+                            <?php if(!$model['tintuc']->isNewRecord): ?>
+                                <?=Html::img(Yii::$app->homeUrl.'../uploads/file/hinhtintuc/'.$model['tintuc']->ten_hinh,['width'=>'100px'])?>
+                               
+                            <?php endif;?>
                         </div>
 
                     </div>
