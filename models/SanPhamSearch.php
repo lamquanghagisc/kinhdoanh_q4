@@ -200,10 +200,7 @@ class SanPhamSearch extends SanPham
                 ],
                
             ],
-            // [
-            //     'class'=>'\kartik\grid\DataColumn',
-            //     'attribute'=>'alias_title',
-            // ],
+            
             [
                 'class'=>'\kartik\grid\DataColumn',
                 'attribute'=>'anh_dai_dien',

@@ -52,4 +52,7 @@ class DmNganhNghe extends \yii\db\ActiveRecord
     public function getSanpham(){
         return $this->hasMany(SanPham::className(),['nganhnghe_id'=>'id']);
     }
+    public function getSukien(){
+        return $this->hasMany(SuKien::className(),['nganhnghe_id'=>'id']);
+    }
 }

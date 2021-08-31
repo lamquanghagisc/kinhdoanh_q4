@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </tr>
                             <tr>
                                 <th><?= $model->getAttributeLabel('slug') ?></th>
-                                <td><?= $model->alias_title ?></td>
+                                <td><?= $model->slug ?></td>
                             </tr>
                             <tr>
                                 <th><?= $model->getAttributeLabel('thoi_gian_dang') ?></th>

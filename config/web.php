@@ -115,6 +115,15 @@ $config = [
                     'defaults' => ['page' => 1],
                 ],
                 [
+                    'pattern' => 'su-kien/<page:\d+>',
+                    'route' => 'user/su-kien/index',
+                    'defaults' => ['page' => 1],
+                ],
+                [
+                    'pattern' => 'su-kien/<slug:[\w\d\-]+>',
+                    'route' => 'user/su-kien/view',
+                ],
+                [
                     'pattern' => 'tin-tuc/<slug:[\w\d\-]+>',
                     'route' => 'user/tin-tuc/view',
                 ],

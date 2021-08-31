@@ -203,7 +203,7 @@ class SanphamController extends AbstractKinhdoanhq6Controller
     private function getCategories()
     {
         
-        $danhmuc['sanpham'] = DmNganhNghe::find()->all();
+        $danhmuc['nganhnghe'] = DmNganhNghe::find()->all();
  
         return $danhmuc;
     }

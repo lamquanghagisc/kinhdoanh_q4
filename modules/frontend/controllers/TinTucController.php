@@ -11,6 +11,7 @@ namespace app\modules\frontend\controllers;
 use app\models\DmLoaitin;
 use app\models\TinTuc;
 use app\models\TinTucSearch;
+use app\models\TinTucView;
 use app\modules\frontend\base\FrontendBaseController;
 use Yii;
 use yii\data\Pagination;
@@ -53,7 +54,9 @@ class TinTucController extends FrontendBaseController
         if ($model == null) {
             return $this->render('notfound');
         }
-
+        $modeltintucview=new TinTucView();
+        $modeltintucview->tintuc_id=$model->id_tintuc;
+        $modeltintucview->save();
         return $this->render('view', [
             'model' => $model
         ]);

@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="block-content">
             <h2><?= $model->ten_san_pham?></h2>
             <p class="font-size-sm">
-                <span class="text-black"><?= date('H:i:s d-m-Y', strtotime($model->thoi_gian_dang))?></span>
+                <span class="text-black"><?= $model->getViews()->count()?> Lượt xem. <?= date('H:i:s d-m-Y', strtotime($model->thoi_gian_dang))?></span>
             </p>
             <div>
                 <img class="card-img-top" src="<?= Yii::$app->homeUrl?>../uploads/file/hinhsanpham/<?=$model->anh_dai_dien?>" alt="Card image cap">

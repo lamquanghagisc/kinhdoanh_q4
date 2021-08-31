@@ -38,7 +38,7 @@ $this->title = 'Sản phẩm';
                 <?php foreach ($model as $i => $item): ?>
                     <div class="col-lg-12">
                         <div class="card-deck">
-                                <div class="card" style="width: 18rem;">
+                                <div class="card" style="width: 18rem;">-
                                     <img class="card-img-top" src="<?= Yii::$app->homeUrl?>../uploads/file/hinhsanpham/<?=$item->anh_dai_dien?>" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title"><?= $item->ten_san_pham ?></h5>
@@ -48,6 +48,9 @@ $this->title = 'Sản phẩm';
                                         <a href="<?= Yii::$app->urlManager->createUrl('san-pham' . '/' . $item->slug) ?>" class="btn btn-primary">Chi tiết</a>
                                     </div>
                                     <div class="card-footer">
+                                        <p class="font-size-sm">
+                                            <span class="text-black"><?= $item->getViews()->count()?> Lượt xem. </span>
+                                        </p>
                                     </div>
                                 </div>
                         </div>    

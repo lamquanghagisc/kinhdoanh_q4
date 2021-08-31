@@ -12,6 +12,7 @@ use app\models\DmLoaitin;
 use app\models\TinTuc;
 use app\models\TinTucSearch;
 use app\models\Video;
+use app\models\VideoView;
 use app\modules\frontend\base\FrontendBaseController;
 use Yii;
 use yii\data\Pagination;
@@ -53,7 +54,9 @@ class VideoController extends FrontendBaseController
         if ($model == null) {
             return $this->render('notfound');
         }
-
+        $modelvideoview= new VideoView();
+        $modelvideoview->video_id=$model->id;
+        $modelvideoview->save();
         return $this->render('view', [
             'model' => $model
         ]);

@@ -117,7 +117,7 @@ use app\services\UtilityService;
          <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="fa fa-newspaper-o"></i>
-                <span class="title">Tin tức và sự kiện</span>
+                <span class="title">Tin tức và Media</span>
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
@@ -129,6 +129,26 @@ use app\services\UtilityService;
                 <li class="nav-item">
                     <a href="<?= Yii::$app->urlManager->createUrl('tintuc/video') ?>" class="nav-link ">
                       <i class="fa fa-list"></i>   <span class="title">Quản lý video</span>
+                    </a>
+                </li>
+              
+            </ul>
+        </li>
+        <li class="nav-item  ">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-newspaper-o"></i>
+                <span class="title">Sản phẩm và sự kiện</span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                  <li class="nav-item">
+                    <a href="<?= Yii::$app->urlManager->createUrl('sanpham/sanpham') ?>" class="nav-link ">
+                      <i class="fa fa-list"></i>   <span class="title">Quản lý sản phẩm</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= Yii::$app->urlManager->createUrl('sanpham/sukien') ?>" class="nav-link ">
+                      <i class="fa fa-list"></i>   <span class="title">Quản lý sự kiện</span>
                     </a>
                 </li>
               

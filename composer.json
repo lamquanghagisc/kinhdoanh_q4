@@ -33,7 +33,8 @@
         "2amigos/yii2-date-time-picker-widget": "~1.0",
         "2amigos/yii2-tinymce-widget": "*",
         "wbraganca/yii2-videojs-widget": "~1.0",
-        "kartik-v/yii2-social": "@dev"
+        "kartik-v/yii2-social": "@dev",
+        "kartik-v/yii2-widget-datetimepicker": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

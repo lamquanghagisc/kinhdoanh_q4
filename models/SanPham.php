@@ -111,6 +111,9 @@ class SanPham extends \yii\db\ActiveRecord
     public function getTaikhoan(){
         return $this->hasOne(Taikhoan::className(),['id_taikhoan'=>'taikhoan_id']);
     }
+    public function getViews(){
+        return $this->hasMany(SanPhamView::className(),['sanpham_id'=>'id']);
+    }
     //khi người dùng upload file mới khi cập nhật tin
     // file cu: a
     //file mới: b

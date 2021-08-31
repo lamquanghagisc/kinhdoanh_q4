@@ -99,6 +99,9 @@ class Video extends \yii\db\ActiveRecord
         $cat = ArrayHelper::map($cat, 'id', 'ten_loai');
         return $cat;
     }
+    public function getViews(){
+        return $this->hasMany(VideoView::className(),['video_id'=>'id']);
+    }
     //xử lý upload file mới trường hợp cập nhật
     // file cu: a
     //file mới: b

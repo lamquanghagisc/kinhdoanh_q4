@@ -35,7 +35,9 @@ $this->title = 'Video';
                            href="<?= Yii::$app->urlManager->createUrl('video' . '/' . $item->slug) ?>">
                             <div class="block-content">
                                 <h4 class="mb-1"><?= $item->tieu_de ?></h4>
-                          
+                                <p class="font-size-sm">
+                                    <span class="text-black"><?= $item->getViews()->count()?> Lượt xem. </span>
+                                </p>
                                 <img src="<?= Yii::$app->homeUrl?>../uploads/file/anhvideo/<?=$item->anh_dai_dien?> " alt=" " class="img-responsive" />
                                 <p>
                                     <?= $item->tom_tat ?>

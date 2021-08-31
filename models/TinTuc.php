@@ -88,6 +88,9 @@ class TinTuc extends \yii\db\ActiveRecord
         $cat = ArrayHelper::map($cat, 'id', 'ten_loai');
         return $cat;
     }
+    public function getViews(){
+        return $this->hasMany(TinTucView::className(),['tintuc_id'=>'id_tintuc']);
+    }
     //khi người dùng upload file mới khi cập nhật tin
     // file cu: a
     //file mới: b

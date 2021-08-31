@@ -11,7 +11,7 @@ namespace app\modules\frontend\controllers;
 use app\models\DmNganhNghe;
 use app\models\SanPham;
 use app\models\SanPhamSearch;
-
+use app\models\SanPhamView;
 use app\modules\frontend\base\FrontendBaseController;
 use Yii;
 use yii\data\Pagination;
@@ -55,7 +55,9 @@ class SanPhamController extends FrontendBaseController
         if ($model == null) {
             return $this->render('notfound');
         }
-
+        $modelsanhamview= new SanPhamView();
+        $modelsanhamview->sanpham_id=$model->id;
+        $modelsanhamview->save();
         return $this->render('view', [
             'model' => $model
         ]);
