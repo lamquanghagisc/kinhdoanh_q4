@@ -25,7 +25,7 @@ $pathInfo = Yii::$app->request->pathInfo;
                         <span class="text-uppercase font-w700">Tra cứu vị trí</span>
                     </a>
                 </li>
-                <li class="nav-main-item">
+                <!-- <li class="nav-main-item">
                     <a class="nav-main-link <?= $pathInfo == 'tin-tuc' ? 'active' : ''?>" href="<?= Yii::$app->urlManager->createUrl('tin-tuc')?>">
                         <i class="nav-main-link-icon fa fa-list"></i>
                         <span class="text-uppercase font-w700">Tin tức</span>
@@ -48,12 +48,24 @@ $pathInfo = Yii::$app->request->pathInfo;
                         <i class="nav-main-link-icon fas fa-calendar-day"></i>
                         <span class="text-uppercase font-w700">Sự kiện</span>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-main-item">
                     <a class="nav-main-link <?= $pathInfo == 'doanh-nghiep-tieu-bieu' ? 'active' : ''?>" href="<?= Yii::$app->urlManager->createUrl('doanh-nghiep-tieu-bieu')?>">
                         <i class="nav-main-link-icon fa fa-briefcase"></i>
                         <span class="text-uppercase font-w700">Doanh nghiệp tiêu biểu</span>
                     </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="nav-main-link-icon fa fa-list"></i>
+                        <span class="text-uppercase font-w700">Thông tin</span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="<?= Yii::$app->urlManager->createUrl('tin-tuc')?>">Tin tức</a>
+                        <a class="dropdown-item" href="<?= Yii::$app->urlManager->createUrl('video')?>">Media</a>
+                        <a class="dropdown-item" href="<?= Yii::$app->urlManager->createUrl('san-pham')?>">Sản Phẩm</a>
+                        <a class="dropdown-item" href="<?= Yii::$app->urlManager->createUrl('su-kien')?>">Sự kiện</a>
+                    </div>
                 </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link <?= $pathInfo == 'lien-he' ? 'active' : ''?>" href="<?= Yii::$app->urlManager->createUrl('lien-he')?>">
@@ -61,19 +73,7 @@ $pathInfo = Yii::$app->request->pathInfo;
                         <span class="text-uppercase font-w700">Liên hệ</span>
                     </a>
                 </li>
-                <!-- <li class="nav-main-item">
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                    <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                   
-                    </div>
-                </li>
-
-                </li> -->
+                
                 <?php if(!Yii::$app->user->isGuest):?>
                     <li class="nav-main-item">
                         <a class="nav-main-link <?= $pathInfo == 'lien-he' ? 'active' : ''?>" href="<?= Yii::$app->urlManager->createUrl('admin/map/index')?>">
