@@ -44,6 +44,12 @@ $pathInfo = Yii::$app->request->pathInfo;
                     </a>
                 </li>
                 <li class="nav-main-item">
+                    <a class="nav-main-link <?= $pathInfo == 'su-kien' ? 'active' : ''?>" href="<?= Yii::$app->urlManager->createUrl('su-kien')?>">
+                        <i class="nav-main-link-icon fas fa-calendar-day"></i>
+                        <span class="text-uppercase font-w700">Sự kiện</span>
+                    </a>
+                </li>
+                <li class="nav-main-item">
                     <a class="nav-main-link <?= $pathInfo == 'doanh-nghiep-tieu-bieu' ? 'active' : ''?>" href="<?= Yii::$app->urlManager->createUrl('doanh-nghiep-tieu-bieu')?>">
                         <i class="nav-main-link-icon fa fa-briefcase"></i>
                         <span class="text-uppercase font-w700">Doanh nghiệp tiêu biểu</span>
